@@ -133,7 +133,7 @@ function incentfit(params) {
   };
   
   // assembles the options
-  // sets the headers, form data, method
+  // sets the headers, method
   var options = {                                                                                                                
     'headers': headers,                                                                                                 
     'method': 'get',                                                          
