@@ -5,26 +5,6 @@
  * Initial Date: Mar 2, 2019
  * MIT License
  *
- * This script records the user's sleep duration to Incenfit on an ongoing basis. 
- * Currently, the script generates a random duration but this could be extended to 
- * support an API call to a sleep tracking system or external source (e.g. spreadsheet). 
- * Inspired by @dholdren's incentsleep. ;)
- *
- * property name                  value
- * -------------                  -----
- * cookie                         the user's webappincentfitcom incentfit.com cookie
- * hour_of_day (optional)         triggers the script at n hour of day (12)
- *
- * Instructions:
- * 1. Create a new Google App Script (https://script.google.com/home/my) project 
- *    with the contents of this script.
- * 2. Create cookie property and any other desired properties from above. 
- *    (File > Project properties > Script properties)
- * 3. Run the setup function to configure the script to run daily. 
- *    (Run > Run function > setup)
- * 4. (OPTIONAL) Enable Stackdriver Logging. (View > Stackdriver Logging)
- * 
- * More info:
  * https://github.com/hirefrank/incentfit-sleep-syncing/blob/master/README.md
  ***********************************************************************************/
 
