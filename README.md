@@ -4,10 +4,10 @@ This script records the user's sleep duration to [Incenfit](https://incentfit.co
 
 ## Setup
 
-1. Create a new [Google App Script](https://script.google.com/home/my) project with the contents of this script.
-1. Create `cookie` property and any other desired properties, see below. `(File > Project properties > Script properties)`
-1. Run the setup function to configure the script to run daily. `(Run > Run function > setup)`
-1. Enable Stackdriver Logging `(View > Stackdriver Logging)`. This is optional.
+1. Create a new [Google App Script](https://script.google.com/home/my) project with the contents of the `Code.gs` script.
+1. Create `cookie` property and any other desired properties, see below. (File > Project properties > Script properties)
+1. Run the setup function to configure the script to run daily. (Run > Run function > setup)
+1. (Optional) Enable Stackdriver Logging. (View > Stackdriver Logging)
 
 ## Script Properties
 
