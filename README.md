@@ -16,6 +16,6 @@ Property name | Value
 cookie | The user's webappincentfitcom incentfit.com cookie
 hour_of_day (optional) | Triggers the script at `n` hour of day (default: 12)
 
-## Integration with Withings Sleep Sensor
+## Withings Sleep Sensor Support
 
 In progress.
