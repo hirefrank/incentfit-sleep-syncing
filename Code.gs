@@ -149,7 +149,7 @@ function incentfit(params) {
 }
 
 /**
- * Returns the date in an Incenfit friendly format, e.g. YYYY-MM-DD
+ * Returns the date in an Incentfit friendly format, e.g. YYYY-MM-DD
  */
 
 function formatDate(date) {
