@@ -1,13 +1,13 @@
 /***********************************************************************************
- * INCENTFIT SLEEP TRACKING
+ * INCENTFIT SLEEP SYNCING
  * ---
  * Author: Frank Harris (frank@hirefrank.com)
  * Initial Date: Mar 2, 2019
  * MIT License
  *
  * This script records the user's sleep duration to Incenfit on an ongoing basis. 
- * Currently, this generates a random sleep duration but the script could be extended
- * to support an api call to a sleep tracking system or external source (e.g. spreadsheet)
+ * Currently, the script generates a random duration but this could be extended to 
+ * support an API call to a sleep tracking system or external source (e.g. spreadsheet). 
  * Inspired by @dholdren's incentsleep. ;)
  *
  * property name                  value
@@ -22,10 +22,10 @@
  *    (File > Project properties > Script properties)
  * 3. Run the setup function to configure the script to run daily. 
  *    (Run > Run function > setup)
- * 4. Enable Stackdriver Logging (View > Stackdriver Logging). OPTIONAL
+ * 4. (OPTIONAL) Enable Stackdriver Logging. (View > Stackdriver Logging)
  * 
  * More info:
- * https://github.com/hirefrank/incentfit-sleep-tracking/blob/master/README.md
+ * https://github.com/hirefrank/incentfit-sleep-syncing/blob/master/README.md
  ***********************************************************************************/
 
 /**
