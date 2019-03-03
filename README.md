@@ -13,8 +13,8 @@ This script records the user's sleep duration to [Incenfit](https://incentfit.co
 
 Property name | Value
 ------------ | -------------
-cookie | The user's webappincentfitcom incentfit.com cookie
-hour_of_day _(optional)_ | Triggers the script at `n` hour of day (default: 12)
+cookie | **Required.** The user's webappincentfitcom incentfit.com cookie; used for authentication
+hour_of_day | Triggers the script at `n` hour of day (default: 12)
 
 ## Withings Sleep Sensor Support
 
