@@ -8,6 +8,8 @@
  * https://github.com/hirefrank/incentfit-sleep-syncing/blob/master/README.md
  ***********************************************************************************/
 
+var BASE_URL = 'https://webapp.incentfit.com/ajax/ironhide.php';
+
 /**
  * Sets up the time-based trigger and runs the initial sync.
  * ---
@@ -16,46 +18,19 @@
  */
 
 function setup() {
-  if (checkCookie() == true) {
-    // if no property override, use the default: 12
-    const HOUR_OF_DAY = PropertiesService.getScriptProperties().getProperty('hour_of_day') || 12;
-    
-    // create the trigger
-    // runs at noon in the timezone of the script
-    ScriptApp.newTrigger("recordSleep")
-      .timeBased()
-      .atHour(HOUR_OF_DAY)
-      .everyDays(1)
-      .create();
-    
-    // run the initial sync
-    recordSleep();
-  }
-}
-
-/**
- * Checks to make sure the cookie script property has been set properly
- */
-
-function checkCookie() {
-  var c = false;
-  // verifies the property exist
-  if (PropertiesService.getScriptProperties().getProperty('cookie') == null) {
-    logIt('Cookie script property does not exist.');
-  } else {
-    var c = PropertiesService.getScriptProperties().getProperty('cookie'); 
-    var s = 'webappincentfitcom=';
-    // verifies the property contain 'webappincentfitcom='
-    // todo: should check to make sure it begins with this string
-    if (c.match(s)) {
-      c = true;
-    } else {
-      // prepends the s string to the property
-      PropertiesService.getScriptProperties().setProperty('cookie', s + c);
-      c = true;
-    }
-  }
-  return c;
+  // if no property override, use the default: 12
+  const HOUR_OF_DAY = PropertiesService.getScriptProperties().getProperty('hour_of_day') || 12;
+  
+  // create the trigger
+  // runs at noon in the timezone of the script
+  ScriptApp.newTrigger("recordSleep")
+    .timeBased()
+    .atHour(HOUR_OF_DAY)
+    .everyDays(1)
+    .create();
+  
+  // run the initial sync
+  recordSleep();
 }
 
 /**
@@ -119,33 +94,98 @@ function recordSleep(date) {
  * via COOKIE variable declared at the top of the script.
  */
 
-function incentfit(params) {
-  const BASE_URL = 'https://webapp.incentfit.com/ajax/ironhide.php?';
-  const COOKIE = PropertiesService.getScriptProperties().getProperty('cookie');
-
-  // assemble the header
-  // spoof user-agent, origin, referer
-  var headers = {                                                              
-    'Cookie': COOKIE,
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36',
-    'Origin': 'https://webapp.incentfit.com',
-    'Referer': 'https://webapp.incentfit.com/add-activity/report-activity?activitytypeid=74'
-  };
-  
+function incentfit(params) {  
   // assembles the options
   // sets the headers, method
   var options = {                                                                                                                
-    'headers': headers,                                                                                                 
+    'headers': getHeaders('https://webapp.incentfit.com/add-activity/report-activity?activitytypeid=74', getAuthCookie()),
     'method': 'get',                                                          
     'muteHttpExceptions': true,
   };
   
   // constructs the url, makes the request, returns the response
   var path = Object.keys(params).map(function(key) { return encodeURIComponent(key) + '=' + params[key] }).join('&');
-  var url = BASE_URL + path;
-  
+  var url = BASE_URL + '?' + path;
+
   var response = UrlFetchApp.fetch(url, options);
   logIt(response);
+}
+
+/**
+ * Return the user's EmployeeIDLong need for authentication
+ */
+
+function getEmployeeIDLong() {
+  var form = {                                                                 
+    'emailorid': PropertiesService.getScriptProperties().getProperty('email'),
+    'cacheoffset': 0,
+    'dst': false,
+    'featuresetCode': null,
+    'hasdst': true,
+    'svc': "AuthIdentify",
+    'timezone': 300,
+    'ts': Date.now(),
+  };
+    
+  // assembles the options
+  // sets the headers, method
+  var options = {                                                                                                                
+    'headers': getHeaders(),
+    'payload': form,
+    'method': 'post',                                                          
+  };
+  
+  var response = UrlFetchApp.fetch(BASE_URL, options);
+  return JSON.parse(response).payload.Individual.EmployeeIDLong;
+}
+
+/**
+ * Return the user's authentication cookie
+ */
+
+function getAuthCookie() {
+  var form = {                                                                 
+    'emailorid': PropertiesService.getScriptProperties().getProperty('email'),
+    'password': PropertiesService.getScriptProperties().getProperty('password'),
+    'cacheoffset': 0,
+    'dst': false,
+    'featuresetCode': null,
+    'hasdst': true,
+    'svc': "AuthLogin",
+    'employeeIDLong': getEmployeeIDLong(),
+    'timezone': 300,
+    'ts': Date.now(),
+  };
+  
+  // assembles the options
+  // sets the headers, method
+  var options = {                                                                                                                
+    'headers': getHeaders(),
+    'payload': form,
+    'method': 'post',                                                          
+  };
+  
+  var response = UrlFetchApp.fetch(BASE_URL, options);
+  return response.getHeaders()['Set-Cookie'].split(';')[0];
+}
+
+/**
+ * Assemble the header, spoof user-agent, origin, referer
+ */
+
+function getHeaders(referer, cookie) {
+  const ORIGIN_URL = 'https://webapp.incentfit.com';
+  const REFERER_URL = referer || 'https://webapp.incentfit.com/login';
+  const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36';
+  
+  var headers = {                                                              
+    'User-Agent': USER_AGENT,
+    'Origin': ORIGIN_URL,
+    'Referer': REFERER_URL
+  };
+  
+  if (cookie !==undefined) headers['Cookie'] = cookie;
+  return headers;
 }
 
 /**
