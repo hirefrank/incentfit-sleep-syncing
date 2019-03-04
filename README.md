@@ -17,6 +17,25 @@ email | **Required.** The user's email address used for authentication on incenf
 password | **Required.** The user's password used for authentication on incenfit.com
 hour_of_day | Triggers the script at `n` hour of day (default: 12)
 
+## Recording Sleep for Multiple Days
+
+Configure the dates in the `bulkRecordSleep` function and then run the function. (Run > Run function > bulkRecordSleep)
+
+```
+function bulkRecordSleep() {
+  // format is YYYY, MM, DD; 00 is Jan
+  var start_date = new Date(2019,00,01); // Jan 1, 2019
+  var end_date = new Date(2019,02,01); // March 1, 2019
+  
+  var d = start_date;
+  while (d <= end_date) {
+    recordSleep(d);
+    Utilities.sleep(5000);
+    d.setDate(d.getDate() + 1);
+  }  
+}
+```
+
 ## Withings Sleep Sensor Support
 
 In progress.
