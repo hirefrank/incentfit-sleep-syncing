@@ -1,6 +1,6 @@
 # Incentfit Sleep Syncing
 
-This script records the user's sleep duration to [Incenfit](https://incentfit.com) on an ongoing basis. Currently, the script generates a random duration but could be extended to support an API call to a sleep tracking system or external source (e.g. spreadsheet). Inspired by [@dholdren's](https://github.com/dholdren) incentsleep. ;)
+This script records the user's sleep duration to [Incentfit](https://incentfit.com) on an ongoing basis. Currently, the script generates a random duration but could be extended to support an API call to a sleep tracking system or external source (e.g. spreadsheet). Inspired by [@dholdren's](https://github.com/dholdren) incentsleep. ;)
 
 ## Getting Started
 
@@ -13,8 +13,8 @@ This script records the user's sleep duration to [Incenfit](https://incentfit.co
 
 Property name | Value
 ------------ | -------------
-email | **Required.** The user's email address used for authentication on incenfit.com
-password | **Required.** The user's password used for authentication on incenfit.com
+email | **Required.** The user's email address used for authentication on incentfit.com
+password | **Required.** The user's password used for authentication on incentfit.com
 hour_of_day | Triggers the script at `n` hour of day (default: 12)
 
 ## Recording Sleep for Multiple Days
