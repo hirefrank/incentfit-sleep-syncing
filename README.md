@@ -5,7 +5,7 @@ This script records the user's sleep duration to [Incenfit](https://incentfit.co
 ## Getting Started
 
 1. Create a new [Google App Script](https://script.google.com/home/my) project with the contents of `Code.gs`.
-1. Create `cookie` property and any other desired properties, see below. (File > Project properties > Script properties)
+1. Create `email` and `password` properties and any other desired properties, see below. (File > Project properties > Script properties)
 1. Run the setup function to configure the script to run daily. (Run > Run function > setup)
 1. (Optional) Enable Stackdriver Logging. (View > Stackdriver Logging)
 
@@ -13,7 +13,8 @@ This script records the user's sleep duration to [Incenfit](https://incentfit.co
 
 Property name | Value
 ------------ | -------------
-cookie | **Required.** The user's webappincentfitcom incentfit.com cookie; used for authentication
+email | **Required.** The user's email address used for authentication on incenfit.com
+password | **Required.** The user's password used for authentication on incenfit.com
 hour_of_day | Triggers the script at `n` hour of day (default: 12)
 
 ## Withings Sleep Sensor Support
