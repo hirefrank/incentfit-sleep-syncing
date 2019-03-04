@@ -91,7 +91,7 @@ function recordSleep(date) {
  * Makes an authenticated Incentfit request and returns the response
  * ---
  * Accepts params for activity date, type, value, etc. Requires authentication
- * via COOKIE variable declared at the top of the script.
+ * via email and password variable declared in the script properties.
  */
 
 function incentfit(params) {  
