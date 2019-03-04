@@ -112,7 +112,7 @@ function incentfit(params) {
 }
 
 /**
- * Return the user's EmployeeIDLong need for authentication
+ * Return the user's EmployeeIDLong needed for authentication
  */
 
 function getEmployeeIDLong() {
