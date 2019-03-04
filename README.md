@@ -5,7 +5,7 @@ This script records the user's sleep duration to [Incentfit](https://incentfit.c
 ## Getting Started
 
 1. Create a new [Google App Script](https://script.google.com/home/my) project with the contents of `Code.gs`.
-1. Create the `email`, `password`, and `hour_of_day` (optional) -- see below. (File > Project properties > Script properties)
+1. Create the `email`, `password`, and `hour_of_day` (optional) script properties -- see below. (File > Project properties > Script properties)
 1. Run the setup function to configure the script to run daily. (Run > Run function > setup)
 1. (Optional) Enable Stackdriver Logging. (View > Stackdriver Logging)
 
