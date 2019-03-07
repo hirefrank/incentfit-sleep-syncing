@@ -51,12 +51,20 @@ function bulkRecordSleep() {
 }
 
 /**
- * Record sleep tracking in Incentfit
+ * Record today's sleep
+ */
+
+function recordTodaysSleep() {
+  var date = new Date();
+  recordSleep(date);
+}
+
+/**
+ * Record sleep tracking for a given day
  */
 
 function recordSleep(date) {
-  // if date isn't passed in, use the current date
-  var date = date || new Date();
+  var date = date;
   
   // randomly return hours slept between max and min
   // you could replace this with an api call to a 
@@ -84,6 +92,7 @@ function recordSleep(date) {
   }
 
   // add sleep activity 
+  logIt(params);
   incentfit(params);
 }
 
