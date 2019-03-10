@@ -60,18 +60,34 @@ function recordTodaysSleep() {
 }
 
 /**
+ * Return hours slept
+ */
+
+function getHoursSlept(date, type) {
+  var type = type || 'random';
+  var hours;
+  if (type == 'spreadsheet') {
+    // pull from spreadsheet
+    var d = date.toString().split(" ");
+    var date_str = d[0] + " " + d[1] + " " + d[2]
+    hours = getSleepHours(date_str);
+
+  } else {
+    // randomly return hours slept between max and min
+    var sleep_max = 8;
+    var sleep_min = 6;
+    hours = Math.floor(Math.random() * (sleep_max - sleep_min) ) + sleep_min;
+  }
+  return hours;
+}
+ 
+
+/**
  * Record sleep tracking for a given day
  */
 
 function recordSleep(date) {
-  var date = date;
-  
-  // randomly return hours slept between max and min
-  // you could replace this with an api call to a 
-  // sleep tracking system or external source (e.g. spreadsheet)
-  var sleep_max = 8;
-  var sleep_min = 6;
-  var sleep_hours = Math.floor(Math.random() * (sleep_max - sleep_min) ) + sleep_min;
+  var sleep_hours = getHoursSlept(date,'spreadsheet');
   
   // assumes today is the activity date
   // you could replace this with an api call to a 
