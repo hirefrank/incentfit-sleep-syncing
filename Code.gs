@@ -30,7 +30,7 @@ function setup() {
     .create();
   
   // run the initial sync
-  recordSleep();
+  recordTodaysSleep();
 }
 
 /**
