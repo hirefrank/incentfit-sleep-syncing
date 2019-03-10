@@ -15,7 +15,7 @@ Property name | Value
 ------------ | -------------
 email | **Required.** The user's email address used for authentication on incentfit.com
 password | **Required.** The user's password used for authentication on incentfit.com
-hour_of_day | Triggers the script at `n` hour of day (default: 12)
+hour_of_day | Triggers the script at `n` hour of day; 24 hour clock (default: 12)
 
 ## Recording Sleep for Multiple Days
 
