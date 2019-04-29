@@ -47,9 +47,11 @@ function getSleepHours(date) {
   
   for (var i = 0; i < values.length; i++) {
     var d = (values[i][0]).toString();
-    var h = values[i][5]
-    if (d.indexOf(date) > -1) {
+    var h = values[i][5];
+    if (d.indexOf(date) > -1 && h > 0) {
       return h;
+    } else {
+      return 7; 
     }
   }
 }
